@@ -1,0 +1,20 @@
+{
+
+    "manifest_version": 2,
+    "name": "Youtube loop A-B",
+    "version": "1.0",
+  
+    "description": "Trash addon",
+  
+    "icons": {
+      "48": "logo-48.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.youtube.com/watch*"],
+        "js": ["Main.js"]
+      }
+    ]
+  
+  }

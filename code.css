@@ -1,0 +1,52 @@
+#Table-YtL-a-b-logo {
+    height: 28px;
+    width: 28px;
+    float: left;
+}
+#YtL-a-b-Table{
+    z-index: 500;
+    border-radius: 9px;
+    position: absolute;
+    background-color: rgba(111, 187, 255, 0.75);
+    bottom: 55px;
+    left: 25px;
+    max-width: 325px;
+    max-height: 300px;
+    
+}
+.YtL-popup-text {
+    font-size: 18px;
+    margin-left: 2px;
+    margin-right: 2px;
+    display: inline-block;
+    border-spacing: 5px 10px;
+    text-align: left;
+}
+.YtL-Row {
+    width: 150px;
+}
+.YtL-popup-input {
+    width: 80px;
+}
+.YtL-span-button {
+    font-size: 14px;
+    text-decoration: underline;
+    color: white;
+}
+.YtL-Button{
+  background-color: white;
+  border: 2px solid;
+  color: black;
+  font-size: 14px;
+  padding: 9px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+.YtL-Button:hover {
+    background-color: rgba(111, 187, 255, 0.75); /* Green */
+    color: black;
+  }
