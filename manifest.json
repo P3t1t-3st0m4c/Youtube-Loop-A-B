@@ -9,13 +9,18 @@
     "icons": {
       "48": "logo-48.png"
     },
-
+    
     "browser_action": {
       "default_icon": {
         "48": "logo-48.png"
       },
-      "default_title": "Youtube Loop A-B"
+      "default_title": "Youtube Loop A-B",
+      "default_popup": "Browser.html"
     },
+
+    "permissions": [
+      "activeTab"
+    ],
   
     "content_scripts": [
       {

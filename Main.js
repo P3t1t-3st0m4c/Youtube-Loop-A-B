@@ -191,4 +191,10 @@ function checkTime(element, start, end) {
     }
 }
 
-startup();
+browser.runtime.onMessage.addListener((message) => {
+    if (message.command === 'run'){
+        startup()
+    }else if (message.command === 'stop'){
+        console.log('test')
+    }
+})
