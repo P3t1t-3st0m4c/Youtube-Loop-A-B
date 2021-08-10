@@ -21,7 +21,7 @@ function addButton() {
         button.classList = "playerButton ytp-button";
         button.title = "Create a repeat sequence";
         button.setAttribute('aria-label', "Create a repeat sequence");
-        image.classList = "playerButtonImage";
+        image.classList = "YtL-Button-Image";
         image.id = 'Button-YtL-a-b-image';
         image.src = browser.runtime.getURL("imgs/b-to-a.png");
         button.appendChild(image);
@@ -48,11 +48,11 @@ function giveCurrentTime(elem, to) {
     if (nb >= 60 * 100000) {
         str += Math.floor(nb / (60 * 100000)).toString() + ':';
         nb = nb % (60 * 100000)
-    } // if the time exceed one minute, convert the miliseconds into minute(s) and and keep the remaining of the miliseconds
+    }else{str += '0:'} // if the time exceed one minute, convert the miliseconds into minute(s) and and keep the remaining of the miliseconds else add 0 to the end of the string
     if (nb >= 100000) {
         str += Math.floor(nb / (100000)).toString();
         nb = nb % (100000)
-    } // if the time exceed one second, convert the miliseconds into second(s) and and keep the remaining of the miliseconds
+    }else{str += '0'} // if the time exceed one second, convert the miliseconds into second(s) and and keep the remaining of the miliseconds else add 0 to the end of the string
     if (nb > 0) {
         str += '.' + Math.floor(nb).toString();
     } // the remaining miliseconds
@@ -69,10 +69,12 @@ function decodeCurrentTime(str) {
     nb = 0
     if (str.includes(',')) {
         nb += parseInt(str.split(',')[0]) * (60 * 60)
+        str = str.split(',')[1]
     } // if the string has one hour or more then we convert it to seconds
     if (str.includes(':')) {
         nb += parseInt(str.split(':')[0]) * (60) + parseFloat(str.split(':')[1])
-    } // convert the minutes into seconds and adding the rest of the seconds and milliseconds to the final number
+    }
+    console.log(nb) // convert the minutes into seconds and adding the rest of the seconds and milliseconds to the final number if there is no minutes add the seconds and milliseconds
     return nb
 }
 
@@ -111,7 +113,7 @@ function callback3() {
     loop_video(
         document.getElementById('YtL-Loop-Button'),
         data,
-        500,
+        100,
         decodeCurrentTime(document.getElementById('YtL-time1').value),
         decodeCurrentTime(document.getElementById('YtL-time2').value))
 }
@@ -164,6 +166,11 @@ function createPopup() {
     }
 }
 
+function delete_elems(){
+    document.getElementById('YtL-a-b-PopupContainer').remove();
+    document.getElementById("Button-YtL-a-b").remove();
+}
+
 function showPopup() {
     if (click) {
         table.style.display = 'unset';
@@ -195,6 +202,16 @@ browser.runtime.onMessage.addListener((message) => {
     if (message.command === 'run'){
         startup()
     }else if (message.command === 'stop'){
-        console.log('test')
+        delete_elems()
+    }else if (message.command === 'loaded'){
+        if (document.body.contains(document.getElementById("Button-YtL-a-b")) && document.body.contains(document.getElementById("YtL-a-b-PopupContainer"))){
+            browser.runtime.sendMessage({
+                result: true
+            })
+        }else{
+            browser.runtime.sendMessage({
+                result: false
+            })
+        }
     }
 })

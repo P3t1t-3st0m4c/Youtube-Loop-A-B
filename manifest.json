@@ -7,12 +7,12 @@
     "description": "Trash addon",
 
     "icons": {
-      "48": "logo-48.png"
+      "48": "imgs/logo-48.png"
     },
     
     "browser_action": {
       "default_icon": {
-        "48": "logo-48.png"
+        "48": "imgs/logo-48.png"
       },
       "default_title": "Youtube Loop A-B",
       "default_popup": "Browser.html"
@@ -27,7 +27,13 @@
         "matches": ["*://*.youtube.com/watch*"],
         "js": ["Main.js"]
       }
-    ]
+    ],
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "{82eb492a-17b1-48d9-9b33-a0d24d6e8f0a}",
+        "strict_min_version": "42.0"
+      }
+    }
     
   
   }

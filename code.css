@@ -14,6 +14,13 @@
     max-height: 300px;
     
 }
+.YtL-Button-Image{
+    height: 60%;
+    top: 0;
+    bottom: 0;
+    display: block;
+    margin: auto;
+}
 .YtL-popup-text {
     font-size: 18px;
     margin-left: 2px;
