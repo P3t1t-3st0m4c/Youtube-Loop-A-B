@@ -5,9 +5,16 @@
     "version": "1.0",
   
     "description": "Trash addon",
-  
+
     "icons": {
       "48": "logo-48.png"
+    },
+
+    "browser_action": {
+      "default_icon": {
+        "48": "logo-48.png"
+      },
+      "default_title": "Youtube Loop A-B"
     },
   
     "content_scripts": [
@@ -16,5 +23,6 @@
         "js": ["Main.js"]
       }
     ]
+    
   
   }

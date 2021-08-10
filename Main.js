@@ -23,7 +23,7 @@ function addButton() {
         button.setAttribute('aria-label', "Create a repeat sequence");
         image.classList = "playerButtonImage";
         image.id = 'Button-YtL-a-b-image';
-        image.src = browser.runtime.getURL("b-to-a.png");
+        image.src = browser.runtime.getURL("imgs/b-to-a.png");
         button.appendChild(image);
         player_bar_left[0].appendChild(button);
         button.addEventListener("click", showPopup);
@@ -153,7 +153,7 @@ function createPopup() {
         popupContainer.id = 'YtL-a-b-PopupContainer';
         popupContainer.insertAdjacentHTML("beforeend", all);
         video_player.appendChild(popupContainer);
-        document.getElementById('Table-YtL-a-b-logo').src = browser.runtime.getURL("b-to-a.png");
+        document.getElementById('Table-YtL-a-b-logo').src = browser.runtime.getURL("imgs/b-to-a.png");
         table = document.getElementById('YtL-a-b-Table');
         table.style.display = 'None';
         data = window.wrappedJSObject.document.getElementById("movie_player")
