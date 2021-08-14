@@ -15,7 +15,6 @@ function checkLoaded(){
                 document.getElementById("ImgButton").src = cross;
                 button = true;
             }
-            click();
         })
         browser.tabs.sendMessage(tabs[0].id, {
             command: "loaded"
@@ -55,3 +54,4 @@ function click(){
 
 browser.tabs.executeScript({file: "Main.js"})
 .then(checkLoaded)
+.then(click())
