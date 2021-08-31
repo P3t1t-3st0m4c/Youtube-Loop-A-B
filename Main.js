@@ -1,13 +1,13 @@
 var click = true;
 var click2 = true;
 var popupContainer;
+const country_code = document.getElementById('country-code').innerHTML;
 var table;
 var data;
 var loop;
 
 function startup() {
-    var country_code = document.getElementById('country-code');
-    country_code.innerHTML = "MOD"; // Replace the country code with MOD (just for fun)
+    document.getElementById('country-code').innerHTML = "MOD"; // Replace the country code with MOD (just for fun)
     createPopup();
     addButton();
 }
@@ -73,9 +73,8 @@ function decodeCurrentTime(str) {
     } // if the string has one hour or more then we convert it to seconds
     if (str.includes(':')) {
         nb += parseInt(str.split(':')[0]) * (60) + parseFloat(str.split(':')[1])
-    }
-    console.log(nb) // convert the minutes into seconds and adding the rest of the seconds and milliseconds to the final number if there is no minutes add the seconds and milliseconds
-    return nb
+    }     
+    return nb // convert the minutes into seconds and adding the rest of the seconds and milliseconds to the final number if there is no minutes add the seconds and milliseconds
 }
 
 function loop_video(button, elem, time, start, end) {
@@ -159,6 +158,8 @@ function createPopup() {
         table = document.getElementById('YtL-a-b-Table');
         table.style.display = 'None';
         data = window.wrappedJSObject.document.getElementById("movie_player")
+        document.getElementById('YtL-time1').addEventListener('keydown',function (event) {event.stopPropagation();});
+        document.getElementById('YtL-time2').addEventListener('keydown',function (event) {event.stopPropagation();});
         document.getElementById('YtL-current1').addEventListener("click", callback1)
         document.getElementById('YtL-current2').addEventListener("click", callback2)
         document.getElementById('YtL-Loop-Button').addEventListener("click", callback3)
@@ -169,6 +170,8 @@ function createPopup() {
 function delete_elems(){
     document.getElementById('YtL-a-b-PopupContainer').remove();
     document.getElementById("Button-YtL-a-b").remove();
+    document.getElementById('country-code').innerHTML = country_code;
+
 }
 
 function showPopup() {
@@ -184,7 +187,7 @@ function showPopup() {
 function checkTime(element, start, end) {
     /*
     The function checks the current time of the player
-    If the current time exceed the boundaries (|start -> end|) it put the video the start time 
+    If the current time exceed the boundaries (|start -> end|) it puts the video to the start time 
     
     The parameter elem is the wrappedJSObject of the player
     The parameter start is the start of the loop
