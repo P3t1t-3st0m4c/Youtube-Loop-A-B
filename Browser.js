@@ -1,4 +1,3 @@
-
 var button = true;
 var cross = 'imgs/cross.png';
 var checkmark = 'imgs/checkmark.png';
@@ -33,12 +32,14 @@ function click(){
                     command: "run"
                 },)
                 e.target.src = checkmark
+                e.target.alt = Activated
                 button = false;
             }else{
                 browser.tabs.sendMessage(tabs[0].id, {
                     command: "stop"
                 },)
                 e.target.src = cross
+                e.target.alt = Deactivated
                 button = true;
             }
         }

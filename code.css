@@ -54,6 +54,14 @@
 }
 
 .YtL-Button:hover {
-    background-color: rgba(111, 187, 255, 0.75); /* Green */
+    background-color: rgba(111, 187, 255, 0.75);
     color: black;
-  }
+}
+
+.YtL-radio-button{
+    background-color: rgba(111, 187, 255, 0.75);
+}
+
+.YtL-radio-button:hover{
+    background-color: rgba(111, 187, 255, 1);
+}

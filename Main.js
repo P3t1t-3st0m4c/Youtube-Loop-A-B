@@ -109,10 +109,29 @@ function callback2() {
 }
 
 function callback3() {
+    var time;
+    var custom = document.getElementById('YtL-Custom-input');
+    document.getElementsByName('YtL-test').forEach(element => {
+        if (element.checked) {
+            if (element.labels[0].innerHTML === 'High'){
+                time = 50
+            }else if (element.labels[0].innerHTML === 'Medium'){
+                time = 150
+            }else{
+                time = 300
+            }
+        }
+    })
+    if (time === undefined && !isNaN(parseInt(custom.value))){
+        time = parseInt(custom.value)
+    }
+    if (time === undefined){
+        time = 100
+    }
     loop_video(
         document.getElementById('YtL-Loop-Button'),
         data,
-        100,
+        time,
         decodeCurrentTime(document.getElementById('YtL-time1').value),
         decodeCurrentTime(document.getElementById('YtL-time2').value))
 }
@@ -148,7 +167,11 @@ function createPopup() {
                             </td>
                         </tr>
                         <td>
-                            <button id = "YtL-Loop-Button" class = "YtL-Button">Loop !</button>
+                            <input id = "YtL-radio-button1" class = "YtL-radio-button" type="radio" name="YtL-test"><label for="YtL-radio-button1" >High</label>
+                            <input id = "YtL-radio-button2" class = "YtL-radio-button" type="radio" name="YtL-test"><label for = "YtL-radio-button2" >Medium</label>
+                            <input id = "YtL-radio-button3" class = "YtL-radio-button" type="radio" name="YtL-test"><label for = "YtL-radio-button3" >Low</label>
+                            <input id = "YtL-Custom-input" class = "YtL-popup-input" type="text" placeholder = "Custom (in ms)"></input>
+                            <button id = "YtL-Loop-Button" class = "YtL-Button" >Loop !</button>
                         </td>
                     </table>`
         popupContainer.id = 'YtL-a-b-PopupContainer';
@@ -160,9 +183,13 @@ function createPopup() {
         data = window.wrappedJSObject.document.getElementById("movie_player")
         document.getElementById('YtL-time1').addEventListener('keydown',function (event) {event.stopPropagation();});
         document.getElementById('YtL-time2').addEventListener('keydown',function (event) {event.stopPropagation();});
-        document.getElementById('YtL-current1').addEventListener("click", callback1)
-        document.getElementById('YtL-current2').addEventListener("click", callback2)
-        document.getElementById('YtL-Loop-Button').addEventListener("click", callback3)
+        document.getElementById('YtL-Custom-input').addEventListener('keydown',function (event) {
+            event.stopPropagation();
+            document.getElementsByName('YtL-test').forEach(element => {element.checked = false})
+        });
+        document.getElementById('YtL-current1').addEventListener("click", callback1);
+        document.getElementById('YtL-current2').addEventListener("click", callback2);
+        document.getElementById('YtL-Loop-Button').addEventListener("click", callback3);
 
     }
 }
