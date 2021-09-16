@@ -1,7 +1,7 @@
 var click = true;
 var click2 = true;
 var popupContainer;
-const country_code = document.getElementById('country-code').innerHTML;
+var country_code = document.getElementById('country-code').innerHTML;
 var table;
 var data;
 var loop;
@@ -90,7 +90,7 @@ function loop_video(button, elem, time, start, end) {
     The parameter end is the end of the loop
     */
     if (click2) {
-        loop = setInterval(checkTime, time, elem, start, end)
+        loop = setInterval(checkTime, time, elem, start, end, document.URL)
         button.textContent = 'Unloop !'
         click2 = false;
     } else {
@@ -128,6 +128,7 @@ function callback3() {
     if (time === undefined){
         time = 100
     }
+    console.log('bruh')
     loop_video(
         document.getElementById('YtL-Loop-Button'),
         data,
@@ -195,6 +196,7 @@ function createPopup() {
 }
 
 function delete_elems(){
+    clearInterval(loop)
     document.getElementById('YtL-a-b-PopupContainer').remove();
     document.getElementById("Button-YtL-a-b").remove();
     document.getElementById('country-code').innerHTML = country_code;
@@ -211,7 +213,7 @@ function showPopup() {
     }
 }
 
-function checkTime(element, start, end) {
+function checkTime(element, start, end, url){
     /*
     The function checks the current time of the player
     If the current time exceed the boundaries (|start -> end|) it puts the video to the start time 
@@ -219,12 +221,18 @@ function checkTime(element, start, end) {
     The parameter elem is the wrappedJSObject of the player
     The parameter start is the start of the loop
     The parameter end is the end of the loop
+    The parameter url is the url of the video
     */
-    if (element.getCurrentTime() < start) {
+    if (element.getCurrentTime() < start){
         element.seekTo(start);
     }
-    if (element.getCurrentTime() > end) {
+    if (element.getCurrentTime() > end){
         element.seekTo(start);
+    }
+    if (url != document.URL){
+        click2 = true;
+        document.getElementById('YtL-Loop-Button').textContent = 'Loop !'
+        clearInterval(loop)
     }
 }
 

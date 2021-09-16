@@ -1,3 +1,4 @@
+
 var button = true;
 var cross = 'imgs/cross.png';
 var checkmark = 'imgs/checkmark.png';
@@ -32,14 +33,14 @@ function click(){
                     command: "run"
                 },)
                 e.target.src = checkmark
-                e.target.alt = Activated
+                e.target.alt = 'Activated'
                 button = false;
             }else{
                 browser.tabs.sendMessage(tabs[0].id, {
                     command: "stop"
                 },)
                 e.target.src = cross
-                e.target.alt = Deactivated
+                e.target.alt = 'Deactivated'
                 button = true;
             }
         }
@@ -53,6 +54,11 @@ function click(){
     })
 }
 
-browser.tabs.executeScript({file: "Main.js"})
-.then(checkLoaded)
-.then(click())
+browser.tabs.query({active: true, currentWindow: true})
+.then((tab) => {
+    if (tab[0].url.startsWith("https://www.youtube.com/watch") || tab[0].url.startsWith("http://www.youtube.com/watch")){
+        browser.tabs.executeScript({file: "Main.js"})
+        .then(checkLoaded)
+        .then(click())
+    }
+})
