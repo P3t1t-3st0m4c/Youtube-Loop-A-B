@@ -15,18 +15,12 @@ function startup() {
 function addButton() {
     if (!document.body.contains(document.getElementById("Button-YtL-a-b"))) {
         var player_bar_left = document.getElementsByClassName('ytp-left-controls');
-        var button = document.createElement('button');
-        var image = document.createElement('img');
-        button.id = "Button-YtL-a-b";
-        button.classList = "playerButton ytp-button";
-        button.title = "Create a repeat sequence";
-        button.setAttribute('aria-label', "Create a repeat sequence");
-        image.classList = "YtL-Button-Image";
-        image.id = 'Button-YtL-a-b-image';
-        image.src = browser.runtime.getURL("imgs/b-to-a.png");
-        button.appendChild(image);
-        player_bar_left[0].appendChild(button);
-        button.addEventListener("click", showPopup);
+        var image = browser.runtime.getURL("imgs/b-to-a.png");
+        var button = `<button id="Button-YtL-a-b" class = "playerButton ytp-button" title = "Create a repeat sequence" aria-label = "Create a repeat sequence">
+                            <img id = "Button-YtL-a-b-image" class = "YtL-Button-Image" src = "${image}"></img>
+                        </button>`
+        player_bar_left[0].insertAdjacentHTML("beforeend", button);
+        document.getElementById("Button-YtL-a-b").addEventListener("click", showPopup);
     }
 }
 
